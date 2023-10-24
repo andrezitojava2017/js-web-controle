@@ -1,0 +1,46 @@
+.container-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 10vh;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  background-color: #575353;
+}
+
+.container-menu{
+    flex: 2;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    color: #C6C2C2;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+.subtitle{
+    color: #C6C2C2;
+    font-size: 0.6rem;
+    text-align: center;
+    font-weight: normal;
+}
+
+ul {
+    
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+  list-style: none;
+  margin-right: 4rem;
+}
+
+li, .name-user{
+    color: white;
+}
+
+li:hover{
+    cursor: pointer;
+    color: #C6C2C2 ;
+}
