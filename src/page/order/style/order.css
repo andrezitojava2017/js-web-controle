@@ -1,0 +1,30 @@
+.content {
+  background-color: #c6c2c2;
+  width: 70%;
+  border-radius: 0.4rem;
+  margin-top: 1.6rem;
+}
+
+.formulario {
+  /*padding: 0.6rem;*/
+  padding-left: 0.6rem;
+  padding-top: 0.6rem;
+  display: flex;
+  gap: 8px;
+}
+
+.itens-pedido {
+  display: flex;
+  flex-direction: column;
+}
+.itens-pedido div {
+  padding: 0.6rem;
+}
+.itens-pedido h3 {
+  background-color: #575353;
+  color: #c6c2c2;
+  padding: 0.8rem;
+  text-align: center;
+
+}
+
