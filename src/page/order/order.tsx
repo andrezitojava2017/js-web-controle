@@ -7,43 +7,44 @@ const Order = () => {
     <div className="content">
       <div className="formulario">
         <div>
-          <span>Solicitação</span>
           <InputJs
+            label="Solicitação"
             placeholder="selecione um pedido"
             name="buscar"
             type="text"
-            style={{ padding: "8px", marginLeft:'8px' }}
+            style={{ padding: "8px" }}
           />
         </div>
 
         <div>
-          <span>Data entrega</span>
           <InputJs
-            placeholder="22/02/2023"
+            label="Data de entrega"
+            placeholder="dd/MM/AAAA"
             name="data-recebimento"
             type="text"
-            style={{ padding: "8px", marginLeft:'8px'}}
+            style={{ padding: "8px" }}
           />
         </div>
       </div>
 
       <div className="formulario">
         <div>
-          <span>Fornecedor</span>
+      
           <InputJs
+          label="Fornecedor"
             placeholder="Nome do fornecedor"
             name="fornecedor"
             type="text"
-            style={{ padding: "8px",marginLeft:'8px'}}
+            style={{ padding: "8px" }}
           />
         </div>
         <div>
-          <span>NF-e</span>
           <InputJs
+          label="NF-e"
             placeholder="Nota Fiscal"
             name="nfe"
             type="text"
-            style={{ padding: "8px", whidth:"60px", marginLeft:'8px'}}
+            style={{ padding: "8px", whidth: "60px"}}
           />
         </div>
       </div>
@@ -55,13 +56,13 @@ const Order = () => {
             name="itens-pedido-selecionado"
             placeholder="Descrição do produto"
             type="search"
-            style={{ width: "35rem", marginLeft:'8px' }}
+            style={{ width: "35rem", }}
           />
           <InputJs
             name="qtd"
             placeholder="QTD"
             type="number"
-            style={{ width: "6rem", marginLeft:'8px' }}
+            style={{ width: "6rem",  }}
           />
           <InputJs
             name="und"

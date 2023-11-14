@@ -1,7 +1,7 @@
 import "./style/input.css";
 
 type Props = {
-  label: string;
+  label?: string;
   placeholder: string;
   type: "email" | "text" | "password" | "number" | "search";
   name: string;
