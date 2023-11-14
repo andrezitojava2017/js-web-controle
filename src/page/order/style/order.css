@@ -18,7 +18,8 @@
   flex-direction: column;
 }
 .itens-pedido div {
-  padding: 0.6rem;
+  padding-top: 0.6rem;
+  padding-left: 0.4rem;
 }
 .itens-pedido h3 {
   background-color: #575353;
