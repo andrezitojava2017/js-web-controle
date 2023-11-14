@@ -15,59 +15,22 @@ const Departament = () => {
       </section>
 
       <section>
-        <Select />
+        <Select style={{ width: "30em" }} label="Secretaria" />
       </section>
       <section>
         <InputJs
           label="Departamento:"
           name="departamento"
           placeholder="Descrição"
-          type="text"
-          style={{ width: "30em" }}
-        />
-      </section>
-      <section>
-        <InputJs
-          label="Local:"
-          name="local"
-          placeholder="ex: PSF, subprefeitura"
           type="text"
           style={{ width: "30em" }}
         />
       </section>
 
-      {/* 
-      <div className="formulario">
-        <div>
-          <Select />
-        </div>
-      </div>
-      <div className="formulario">
-        <InputJs
-          label="Departamento:"
-          name="departamento"
-          placeholder="Descrição"
-          type="text"
-          style={{ width: "30em" }}
-        />
-      </div>
-      <div className="formulario">
-        <InputJs
-          label="Local:"
-          name="local"
-          placeholder="ex: PSF, subprefeitura"
-          type="text"
-          style={{ width: "30em" }}
-        />
-      </div>
-      <div className="button">
-        <ButtonJs
-          value="Salvar"
-          class={"btn"}
-          style={{ backgroundColor: "#1E1D59" }}
-        />
-      </div>
-  */}
+      <section>
+        <ButtonJs value="Salvar" class={"btn"} />
+      </section>
+
     </div>
   );
 };
