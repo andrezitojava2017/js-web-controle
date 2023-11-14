@@ -1,12 +1,21 @@
 import "./style/input.css";
 
-const Select = () => {
+type Props = {
+  label: string;
+  style: {};
+};
+
+const Select = (props: Props) => {
   return (
     <>
       <div>
-        <label>Selecione:</label>
+        <label>{props.label}:</label>
       </div>
-      <select>
+      <select
+        name="lista-secretaria"
+        onChange={(text) => console.log(text.currentTarget.value)}
+        style={{ ...props.style }}
+      >
         <option>TEXTO 1</option>
         <option>TEXTO 2</option>
         <option>TEXTO 3</option>
