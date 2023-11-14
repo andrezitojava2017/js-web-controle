@@ -4,17 +4,17 @@ const Header = () => {
   return (
     <header className="container-header">
       <div className="logo">
-        <h3>JS Web Controle</h3>
-        <span className="subtitle">Tec. em Desenvolvimento</span>
+        <h3>Web Controle</h3>
+        {/*<span className="subtitle">Tec. em Desenvolvimento</span>*/}
       </div>
       <div className="container-menu">
         <div className="dropdown">
           <span className="menu">Solicitação</span>
           <div className="dropdown-content">
-            <p>Nova solicitação</p>
-            <p>Listar</p>
+            <p onClick={()=>console.log('clicado!!!')}>Nova solicitação</p>
             <p>Cad. Secretaria</p>
             <p>Cad. Departamento</p>
+            <p className="sub-menu">Listar</p>
           </div>
         </div>
 
@@ -29,8 +29,8 @@ const Header = () => {
         <div className="dropdown">
           <span className="menu">Produtos</span>
           <div className="dropdown-content">
-            <p >Novo Produto</p>
-            <p >Listar Produtos</p>
+            <p>Novo Produto</p>
+            <p>Listar Produtos</p>
           </div>
         </div>
         {/*

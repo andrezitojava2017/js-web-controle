@@ -57,17 +57,17 @@
   border-radius: 0.2rem;
 }
 
-.dropdown:hover .dropdown-content  {
+.dropdown:hover .dropdown-content {
   display: block;
 }
 
-.dropdown-content p:hover  {
+.dropdown-content p:hover {
   background-color: darkgrey;
-  color:aliceblue;
+  color: aliceblue;
   cursor: pointer;
 }
-p{
-    padding: 0.4rem;
-    font-size: 1rem;
-}
 
+p {
+  padding: 0.4rem;
+  font-size: 1rem;
+}
