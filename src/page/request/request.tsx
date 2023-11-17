@@ -1,9 +1,20 @@
-
 import InputJs from "../../components/input/input";
-import "./style/home.css";
+import "./style/request.css";
 import { FaCheckSquare } from "react-icons/fa";
+import { supabase } from "../../api/supabase";
 
-const Home = () => {
+const Request = () => {
+
+  const api = async () => {
+    
+    supabase
+      .from("countries")
+      .select()
+      .then((rs: { data: any }) => {
+        console.log(rs.data);
+      });
+  };
+
   return (
     <div className="content">
       <div className="formulario">
@@ -34,12 +45,12 @@ const Home = () => {
 
       <div className="itens-pedido">
         <h3>ITENS DO PEDIDO</h3>
-        <div style={{display:'flex'}}>
+        <div style={{ display: "flex" }}>
           <InputJs
             name="buscarItem"
             placeholder="Selecionar produto"
             type="search"
-            style={{ width: "35rem"}}
+            style={{ width: "35rem" }}
           />
           <InputJs
             name="qtd"
@@ -53,8 +64,16 @@ const Home = () => {
             type="text"
             style={{ width: "6rem" }}
           />
-          <span style={{ display:'flex', alignItems:'center', justifyContent:'center', cursor:'pointer'  }} onClick={()=>console.log('item inserido')}>
-            <FaCheckSquare size={40} color={'green'} />
+          <span
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+            }}
+            onClick={api}
+          >
+            <FaCheckSquare size={40} color={"green"} />
           </span>
         </div>
       </div>
@@ -62,4 +81,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Request;
