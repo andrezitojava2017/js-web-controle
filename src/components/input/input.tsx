@@ -7,7 +7,11 @@ type Props = {
   name: string;
   class?: string;
   style?: {};
+  //setState: React.Dispatch<React.SetStateAction<Credentials>>;
+  value: string;
+  setState: React.Dispatch<React.SetStateAction<string>>;
 };
+
 
 const InputJs = (props: Props) => {
   return (
@@ -21,6 +25,8 @@ const InputJs = (props: Props) => {
         name={props.name}
         className={props.class}
         style={{ ...props.style }}
+        value={props.value}
+        onChange={(e)=> props.setState(e.target.value)}
       />
     </>
   );
