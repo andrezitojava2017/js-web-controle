@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { supabase } from "../../api/supabase";
 import imageLogin from "../../assets/login.png";
 import ButtonJs from "../../components/button/button";
 import InputJs from "../../components/input/input";
@@ -17,22 +16,20 @@ const Login = () => {
   const logar = async (): Promise<void> => {
     try {
       validateCredentials(email, password);
-      console.log("dados validos!!");
-      //await signInUser(email, password);
-    } catch (error:any) {
-      setMessageError(error.message)
-      setOpenSnack(true)
+      const data = await signInUser(email, password);
+
+      if (data != null || data != undefined) {
+        window.location.reload();
+      }
+    } catch (error: any) {
+      setMessageError(error.message);
+      setOpenSnack(true);
     }
     //
   };
 
-  const sessao = async (): Promise<any> => {
-    const { data, error } = await supabase.auth.getSession();
-    console.log(data);
-  };
-
   return (
-    <div className="container">
+    <div className="container_login">
       <div className="image">
         <img src={imageLogin} />
       </div>
@@ -59,10 +56,14 @@ const Login = () => {
         </div>
 
         <ButtonJs value={"Logar"} class={"btn"} onClick={logar} />
-        <ButtonJs value={"sessão"} class={"btn"} onClick={sessao} />
       </div>
 
-      <MessageSnack message={messageError} open={openSnack} type="error" onClose={()=>setOpenSnack(false)}/>
+      <MessageSnack
+        message={messageError}
+        open={openSnack}
+        type="error"
+        onClose={() => setOpenSnack(false)}
+      />
     </div>
   );
 };
