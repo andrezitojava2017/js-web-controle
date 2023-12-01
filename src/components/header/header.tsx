@@ -1,4 +1,5 @@
 import "./style/header.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -11,9 +12,10 @@ const Header = () => {
         <div className="dropdown">
           <span className="menu">Solicitação</span>
           <div className="dropdown-content">
-            <p onClick={()=>console.log('clicado!!!')}>Nova solicitação</p>
-            <p>Cad. Secretaria</p>
-            <p>Cad. Departamento</p>
+            
+            <p><Link to="/novo/solicitacao">Solicitação</Link></p>          
+            <p><Link to="/novo/secretaria">Cad. Secretaria</Link></p>
+            <p><Link to="/novo/departamento">Cad. Departamento</Link></p>
             <p className="sub-menu">Listar</p>
           </div>
         </div>
@@ -33,18 +35,6 @@ const Header = () => {
             <p>Listar Produtos</p>
           </div>
         </div>
-        {/*
-        <ul>
-          <li>Solicitação
-            <div className="dropdown">
-              <span>elemtno</span><br></br>
-              <span>elemtno</span>
-            </div>
-          </li>
-          <li>Movimentos</li>
-          <li>Produtos</li>
-        </ul>
-  */}
       </div>
       <div>
         <span className="name-user">Jederson Andre</span>
