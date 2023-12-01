@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import Container from "./components/container/container";
 import Footer from "./components/footer/footer";
 import Header from "./components/header/header";
-import { RouterProvider } from "react-router-dom";
-import { router } from "./routes/route";
+import { BrowserRouter } from "react-router-dom";
+import { RouteJs } from "./routes/route";
 import { supabase } from "./api/supabase";
 import Login from "./page/login/login";
 
@@ -19,22 +19,23 @@ function App() {
     })();
   }, []);
 
- 
   {
     if (userLogin) {
       return (
-        <main className="main">
-          <Header />
-          <Container>
-            <RouterProvider router={router} />
-          </Container>
-          <Footer />
-        </main>
+        <BrowserRouter>
+          <main className="main">
+            <Header />
+            <Container>
+              <RouteJs />
+            </Container>
+
+            <Footer />
+          </main>
+        </BrowserRouter>
       );
     }
     return <Login />;
   }
-
 }
 
 export default App;
