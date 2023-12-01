@@ -8,8 +8,8 @@ type Props = {
   class?: string;
   style?: {};
   //setState: React.Dispatch<React.SetStateAction<Credentials>>;
-  value: string;
-  setState: React.Dispatch<React.SetStateAction<string>>;
+  value: string | number;
+  setState: React.Dispatch<React.SetStateAction<string | object | any>>;
 };
 
 
