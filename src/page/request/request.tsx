@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InputJs from "../../components/input/input";
 import "./style/request.css";
 import { FaCheckSquare } from "react-icons/fa";
 import { supabase } from "../../api/supabase";
+import { allSecretaries, maxSolicitation } from "../../services/requests";
+import { allDepartaments } from "../../services/departaments";
 
 const Request = () => {
   type ItemPedidoProps = {
@@ -11,30 +13,59 @@ const Request = () => {
     unidade: string;
   };
 
+  type Secretarias = {
+    idsecretarias: number;
+    descricao: string;
+  };
+  type Departamentos = {
+    id:number,
+    descricao:string
+  }
+
+  const [listaSecretaria, setListaSecretarias] = useState<Secretarias[]>([]);
   const [solicitacao, setSolicitacao] = useState<string>("");
   const [dataPedido, setDataPedido] = useState<string>("");
   const [usuario, setUsuario] = useState<string>("");
   const [secretaria, setSecretaria] = useState<string>("");
-  const [departamento, setDepartamento] = useState<string>("");
+  const [departamento, setDepartamento] = useState<Departamentos[]>([]);
   const [itensPedido, setItensPedido] = useState<ItemPedidoProps>({
     produto: "",
     quantidade: 0,
     unidade: "",
   });
-  const[listaItensPedido, setListaItensPedido] = useState<ItemPedidoProps[]>([])
+  const [listaItensPedido, setListaItensPedido] = useState<ItemPedidoProps[]>(
+    []
+  );
 
-  const adicionaNovoItemALista = ()=>{
+  useEffect(() => {
+    (async () => {
+      const data = await allSecretaries();
+      if (data) {
+        setListaSecretarias(data);
+      }
+    })();
+  }, []);
 
-    const itens : ItemPedidoProps = {
-      produto : itensPedido.produto,
-      quantidade : itensPedido.quantidade,
-      unidade : itensPedido.unidade
+
+  const selectDepartament = async (e: any) => {
+    let rs = await allDepartaments(e.target.value);
+    if (rs) {
+      setDepartamento(rs);
     }
+  
+  };
 
-    setListaItensPedido([...listaItensPedido, itens])
+  const adicionaNovoItemALista = () => {
+    const itens: ItemPedidoProps = {
+      produto: itensPedido.produto,
+      quantidade: itensPedido.quantidade,
+      unidade: itensPedido.unidade,
+    };
 
-    console.log(listaItensPedido)
-  }
+    setListaItensPedido([...listaItensPedido, itens]);
+
+    console.log(listaItensPedido);
+  };
 
   return (
     <div className="cont_request">
@@ -42,11 +73,12 @@ const Request = () => {
         <div>
           <p>Solicitação</p>
           <InputJs
-            placeholder="001/2023"
+            disable={true}
             name="solicitacao"
             type="text"
             value={solicitacao}
             setState={setSolicitacao}
+            style={{ width: "150px" }}
           />
         </div>
         <div>
@@ -54,7 +86,7 @@ const Request = () => {
           <InputJs
             placeholder="dd/MM/AAAA"
             name="data"
-            type="text"
+            type="date"
             value={dataPedido}
             setState={setDataPedido}
           />
@@ -74,23 +106,26 @@ const Request = () => {
       <div className="form_request">
         <div>
           <p>Secretaria</p>
-          <InputJs
-            placeholder=""
-            name="secretaria"
-            type="text"
-            value={secretaria}
-            setState={setSecretaria}
-          />
+          <select
+            style={{ width: "auto" }}
+            onChange={(e) => selectDepartament(e)}
+          >
+            {listaSecretaria.map((secretaria, index) => (
+              <option key={index} value={secretaria.idsecretarias}>
+                {secretaria.descricao}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <p>Departamento</p>
-          <InputJs
-            placeholder="PSF, BOLSA FAMILI, UPA"
-            name="departamento"
-            type="text"
-            value={departamento}
-            setState={setDepartamento}
-          />
+          <select onChange={(e)=>console.log(e.target.value)}>
+          {departamento.map((departamento, index) => (
+              <option key={index} value={departamento.id}>
+                {departamento.descricao}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
@@ -140,16 +175,16 @@ const Request = () => {
           </span>
         </div>
         <span
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-            }}
-            onClick={()=>console.log(listaItensPedido)}
-          >
-            <FaCheckSquare size={40} color={"green"} />
-          </span>
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+          }}
+          onClick={() => console.log(listaSecretaria)}
+        >
+          <FaCheckSquare size={40} color={"green"} />
+        </span>
       </div>
     </div>
   );
