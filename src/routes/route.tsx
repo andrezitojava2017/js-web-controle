@@ -5,6 +5,7 @@ import Request from "../page/request/request";
 import Order from "../page/order/order";
 import Secretariat from "../page/secretariat/secretariat";
 import Home from "../page/home/home";
+import Produtcs from "../page/products/products";
 
 export const RouteJs = () => {
   return (
@@ -14,6 +15,7 @@ export const RouteJs = () => {
       <Route path="/novo/departamento" element={<Departament />} />
       <Route path="/novo/secretaria" element={<Secretariat />} />
       <Route path="/novo/solicitacao" element={<Request />} />
+      <Route path="/novo/produto" element={<Produtcs />} />
       <Route path="/order" element={<Order />} />
     </Routes>
   );
