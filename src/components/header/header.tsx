@@ -31,7 +31,7 @@ const Header = () => {
         <div className="dropdown">
           <span className="menu">Produtos</span>
           <div className="dropdown-content">
-            <p>Novo Produto</p>
+            <p><Link to={'/novo/produto'} >Novo Produto</Link></p>
             <p>Listar Produtos</p>
           </div>
         </div>
