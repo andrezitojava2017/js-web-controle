@@ -32,7 +32,7 @@ const Header = () => {
           <span className="menu">Produtos</span>
           <div className="dropdown-content">
             <p><Link to={'/novo/produto'} >Novo Produto</Link></p>
-            <p>Listar Produtos</p>
+            <p><Link to={'/produto/listar'} >Listar Produto</Link></p>
           </div>
         </div>
       </div>
