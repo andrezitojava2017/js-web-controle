@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import InputJs from "../../components/input/input";
 import "./style/request.css";
-import { FaCheckSquare } from "react-icons/fa";
+import { FaCheckSquare, FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 import { supabase } from "../../api/supabase";
 import { allSecretaries, maxSolicitation } from "../../services/requests";
 import { allDepartaments } from "../../services/departaments";
@@ -41,6 +42,13 @@ const Request = () => {
     []
   );
 
+  const deleteItem = (index:number) => {
+    const updatedList = listaItensPedido.filter((_, i) => i !== index);
+    setListaItensPedido(updatedList);
+  };
+  
+
+
   useEffect(() => {
     (async () => {
       const session = await infoSession();
@@ -68,7 +76,7 @@ const Request = () => {
     };
 
     setListaItensPedido([...listaItensPedido, { ...itens }]);
-    console.log(listaItensPedido)
+
   };
 
   return (
@@ -180,17 +188,28 @@ const Request = () => {
             <th>ID</th>
             <th>DESCRIÇÃO</th>
             <th>QTD</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           {listaItensPedido.length !== 0 ? (
-            listaItensPedido.map((iten, index) => 
+            listaItensPedido.map((iten, index) => (
               <tr key={index}>
                 <td>{iten.id}</td>
                 <td>{iten.produto}</td>
                 <td>{iten.quantidade}</td>
+                <td>
+                  <tr>
+                    <td className="options-table" onClick={()=>console.log(listaItensPedido)}>
+                      <FaEdit size={18} color={"red"} />
+                    </td>
+                    <td  className="options-table" onClick={()=>deleteItem(index)}>
+                      <MdDelete size={18} color={"blue"} />
+                    </td>
+                  </tr>
+                </td>
               </tr>
-            )
+            ))
           ) : (
             <tr>
               <td colSpan={3}>Nenhum Produto foi adicionado</td>
