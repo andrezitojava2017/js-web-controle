@@ -5,9 +5,12 @@ import { FaCheckSquare } from "react-icons/fa";
 import { supabase } from "../../api/supabase";
 import { allSecretaries, maxSolicitation } from "../../services/requests";
 import { allDepartaments } from "../../services/departaments";
+import { infoSession } from "../../services/auth";
+import InputSearch from "../../components/search/search";
 
 const Request = () => {
   type ItemPedidoProps = {
+    id: number | string;
     produto: string;
     quantidade: number;
     unidade: string;
@@ -18,9 +21,9 @@ const Request = () => {
     descricao: string;
   };
   type Departamentos = {
-    id:number,
-    descricao:string
-  }
+    id: number;
+    descricao: string;
+  };
 
   const [listaSecretaria, setListaSecretarias] = useState<Secretarias[]>([]);
   const [solicitacao, setSolicitacao] = useState<string>("");
@@ -29,6 +32,7 @@ const Request = () => {
   const [secretaria, setSecretaria] = useState<string>("");
   const [departamento, setDepartamento] = useState<Departamentos[]>([]);
   const [itensPedido, setItensPedido] = useState<ItemPedidoProps>({
+    id: 0 || "string",
     produto: "",
     quantidade: 0,
     unidade: "",
@@ -39,32 +43,32 @@ const Request = () => {
 
   useEffect(() => {
     (async () => {
+      const session = await infoSession();
       const data = await allSecretaries();
       if (data) {
         setListaSecretarias(data);
+        setUsuario(session?.user_metadata.nome);
       }
     })();
   }, []);
-
 
   const selectDepartament = async (e: any) => {
     let rs = await allDepartaments(e.target.value);
     if (rs) {
       setDepartamento(rs);
     }
-  
   };
 
   const adicionaNovoItemALista = () => {
     const itens: ItemPedidoProps = {
+      id: itensPedido.id,
       produto: itensPedido.produto,
       quantidade: itensPedido.quantidade,
       unidade: itensPedido.unidade,
     };
 
-    setListaItensPedido([...listaItensPedido, itens]);
-
-    console.log(listaItensPedido);
+    setListaItensPedido([...listaItensPedido, { ...itens }]);
+    console.log(listaItensPedido)
   };
 
   return (
@@ -99,6 +103,7 @@ const Request = () => {
             type="text"
             value={usuario}
             setState={setUsuario}
+            disable={true}
           />
         </div>
       </div>
@@ -119,8 +124,8 @@ const Request = () => {
         </div>
         <div>
           <p>Departamento</p>
-          <select onChange={(e)=>console.log(e.target.value)}>
-          {departamento.map((departamento, index) => (
+          <select onChange={(e) => console.log(e.target.value)}>
+            {departamento.map((departamento, index) => (
               <option key={index} value={departamento.id}>
                 {departamento.descricao}
               </option>
@@ -131,17 +136,10 @@ const Request = () => {
 
       <div className="itens-pedido-request">
         <h3>ITENS DO PEDIDO</h3>
-        <div style={{ display: "flex" }}>
-          <InputJs
-            name="buscarItem"
-            placeholder="Selecionar produto"
-            type="search"
-            style={{ width: "35rem" }}
-            value={itensPedido.produto}
-            setState={(newValue) =>
-              setItensPedido({ ...itensPedido, produto: newValue })
-            }
-          />
+
+        <div style={{ display: "flex", padding: "0.6rem" }}>
+          <InputSearch setState={setItensPedido} value={itensPedido.produto} />
+
           <InputJs
             name="qtd"
             placeholder="QTD"
@@ -171,21 +169,35 @@ const Request = () => {
             }}
             onClick={adicionaNovoItemALista}
           >
-            <FaCheckSquare size={40} color={"green"} />
+            <FaCheckSquare size={30} color={"green"} />
           </span>
         </div>
-        <span
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "pointer",
-          }}
-          onClick={() => console.log(listaSecretaria)}
-        >
-          <FaCheckSquare size={40} color={"green"} />
-        </span>
       </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>DESCRIÇÃO</th>
+            <th>QTD</th>
+          </tr>
+        </thead>
+        <tbody>
+          {listaItensPedido.length !== 0 ? (
+            listaItensPedido.map((iten, index) => 
+              <tr key={index}>
+                <td>{iten.id}</td>
+                <td>{iten.produto}</td>
+                <td>{iten.quantidade}</td>
+              </tr>
+            )
+          ) : (
+            <tr>
+              <td colSpan={3}>Nenhum Produto foi adicionado</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 };
