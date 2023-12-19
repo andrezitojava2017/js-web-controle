@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { infoSession } from "../../services/auth";
 
 const Header = () => {
-  
   type Session = {
     secretaria: string;
     nome: string;
@@ -21,7 +20,6 @@ const Header = () => {
     (async () => {
       const user = await infoSession();
       if (user) {
-        
         setSessionUser({
           secretaria: user.user_metadata.secretaria,
           nome: user.user_metadata.nome,
@@ -29,12 +27,14 @@ const Header = () => {
         });
       }
     })();
-  },[]);
+  }, []);
 
   return (
     <header className="container-header">
       <div className="logo">
-        <h3>Web Controle</h3>
+        <Link to={"/"}>
+          <h3>Web Controle</h3>
+        </Link>
         {/*<span className="subtitle">Tec. em Desenvolvimento</span>*/}
       </div>
       <div className="container-menu">

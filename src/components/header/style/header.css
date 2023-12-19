@@ -15,7 +15,7 @@
   flex-direction: row;
 }
 
-.logo {
+.logo, h3 {
   display: flex;
   flex-direction: column;
   color: #c6c2c2;
