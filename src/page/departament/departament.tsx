@@ -52,7 +52,7 @@ const Departament = () => {
   };
 
   return (
-    <div className="content">
+    <div className="content-departament">
       <section>
         <h3
           style={{ textAlign: "center", padding: "0.8rem", color: "#575353" }}

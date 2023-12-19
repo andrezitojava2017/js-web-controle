@@ -32,7 +32,7 @@ const Produtcs = () => {
   };
 
   return (
-    <div className="content">
+    <div className="content-product">
       <h3 style={{ textAlign: "center", padding: "0.8rem", color: "#575353" }}>
         CADASTRO DE PRODUTOS
       </h3>

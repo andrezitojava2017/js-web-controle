@@ -24,7 +24,7 @@ const Secretariat = () => {
   };
 
   return (
-    <div className="content">
+    <div className="content-secretariat">
       <h3 style={{ textAlign: "center", padding: "0.8rem", color: "#575353" }}>
         CADASTRO DE SECRETARIAS
       </h3>
