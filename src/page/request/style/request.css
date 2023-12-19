@@ -25,3 +25,19 @@
   text-align: center;
 }
 
+table{
+  width: 90%;
+  background-color: rgba(97, 153, 155, 0.514);
+  padding: 06px;
+  margin-left: 10px;
+  margin-bottom: 14px;
+}
+
+table thead tr{
+  background-color: #575353;
+  color:white
+}
+
+.options-table{
+  cursor: pointer;
+}
