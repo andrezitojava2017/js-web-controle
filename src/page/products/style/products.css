@@ -1,8 +1,9 @@
-.content {
+.content-product {
   background-color: #c6c2c2;
   width: 70%;
   border-radius: 0.4rem;
   margin-top: 1.6rem;
+  max-height: 25vw;
 }
 .formulario {
   /*padding: 0.6rem;*/

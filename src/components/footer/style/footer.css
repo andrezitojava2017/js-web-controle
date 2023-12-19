@@ -1,9 +1,8 @@
 .content-footer {
- /* position: absolute;*/
-  width: 100%;
- /* bottom: 0;*/
   background-color: #575353;
-  /*margin-top: 50vh;*/
+  bottom: 0;
+  position: fixed;
+  width: 100%;
 }
 .logo {
   display: flex;
