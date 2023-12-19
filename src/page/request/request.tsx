@@ -42,12 +42,10 @@ const Request = () => {
     []
   );
 
-  const deleteItem = (index:number) => {
+  const deleteItem = (index: number) => {
     const updatedList = listaItensPedido.filter((_, i) => i !== index);
     setListaItensPedido(updatedList);
   };
-  
-
 
   useEffect(() => {
     (async () => {
@@ -76,7 +74,6 @@ const Request = () => {
     };
 
     setListaItensPedido([...listaItensPedido, { ...itens }]);
-
   };
 
   return (
@@ -198,15 +195,9 @@ const Request = () => {
                 <td>{iten.id}</td>
                 <td>{iten.produto}</td>
                 <td>{iten.quantidade}</td>
-                <td>
-                  <tr>
-                    <td className="options-table" onClick={()=>console.log(listaItensPedido)}>
-                      <FaEdit size={18} color={"red"} />
-                    </td>
-                    <td  className="options-table" onClick={()=>deleteItem(index)}>
-                      <MdDelete size={18} color={"blue"} />
-                    </td>
-                  </tr>
+
+                <td className="options-table" onClick={() => deleteItem(index)}>
+                  <MdDelete size={20} color={"red"} />
                 </td>
               </tr>
             ))
