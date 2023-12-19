@@ -1,7 +1,6 @@
 .content-footer {
+  flex-shrink: 0;
   background-color: #575353;
-  bottom: 0;
-  position: fixed;
   width: 100%;
 }
 .logo {
