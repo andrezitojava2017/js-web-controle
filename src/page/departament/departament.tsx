@@ -31,8 +31,19 @@ const Departament = () => {
     })();
   });
 
+  const validateForm = () => {
+    if (select === "" || select === null) {
+      throw new Error("Atenção a secretaria é Obrigatorio!");
+    }
+    if (departament === "" || departament === null) {
+      throw new Error("Atenção Preencha o campo Descrição!");
+    }
+  };
+
   const newDepartament = async () => {
     try {
+      validateForm();
+
       const rs = await addDepartament({
         descricao: departament.toLocaleUpperCase(),
         id_secretaria: select,
@@ -64,6 +75,7 @@ const Departament = () => {
       <section>
         <p>Secretaria:</p>
         <select
+          required={true}
           style={{ width: "auto" }}
           onChange={(e) => setSelect(e.target.value)}
         >
